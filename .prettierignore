@@ -1,4 +1,18 @@
 node_modules
+package.json
+yarn.lock
 # Ignore artifacts:
 build
 Coverage
+
+# Igore build types
+expo-env.d.ts
+
+# Files
+ios/**
+android/**
+assets/**
+.vscode
+.expo-shared
+.prettirrc
+.eslintrc.js
