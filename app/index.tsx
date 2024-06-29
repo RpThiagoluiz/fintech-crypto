@@ -37,7 +37,7 @@ export default function App() {
                </TouchableOpacity>
             </Link>
             <Link
-               href="/singup"
+               href="/signup"
                style={[defaultStyles.pillButton, { flex: 1, backgroundColor: '#fff' }]}
                asChild
             >
