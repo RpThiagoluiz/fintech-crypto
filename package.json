@@ -21,8 +21,7 @@
   "lint-staged": {
     "*.{ts,tsx}": [
       "npx --yes eslint --fix",
-      "npx --yes prettier . --write",
-      "npx --yes eslint ."
+      "npx --yes prettier . --write"
     ]
   },
   "jest": {
