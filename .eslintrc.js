@@ -6,7 +6,7 @@ module.exports = {
       'react-hooks/exhaustive-deps': 'error',
       '@typescript-eslint/no-unused-vars': 'error',
       indent: ['error', 3],
-      'no-console': 'error',
+      'no-console': 'warn',
       'arrow-body-style': ['error', 'as-needed'],
       'import/order': [
          'error',
