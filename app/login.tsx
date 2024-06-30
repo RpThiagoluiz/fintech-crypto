@@ -1,4 +1,6 @@
+import { useSignIn, isClerkAPIResponseError } from '@clerk/clerk-expo';
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
    View,
@@ -8,6 +10,7 @@ import {
    TouchableOpacity,
    KeyboardAvoidingView,
    Platform,
+   Alert,
 } from 'react-native';
 
 import Colors from '@/constants/Colors';
@@ -25,8 +28,40 @@ const Page = () => {
    const [phoneNumber, setPhoneNumber] = useState('');
    const keyboardVerticalOffset = Platform.OS === 'ios' ? 80 : 0;
 
+   const router = useRouter();
+   const { signIn } = useSignIn();
+
    const onSignIn = async (type: SignInType) => {
-      console.log({ type });
+      if (type === SignInType.Phone) {
+         try {
+            const fullPhoneNumber = `${countryCode}${phoneNumber}`;
+
+            const { supportedFirstFactors } = await signIn!.create({
+               identifier: fullPhoneNumber,
+            });
+            const firstPhoneFactor: any = supportedFirstFactors.find(
+               (factor: any) => factor.strategy === 'phone_code',
+            );
+            const { phoneNumberId } = firstPhoneFactor;
+
+            await signIn!.prepareFirstFactor({
+               strategy: 'phone_code',
+               phoneNumberId,
+            });
+
+            router.push({
+               pathname: '/verify/[phone]',
+               params: { phone: fullPhoneNumber, signin: 'true' },
+            });
+         } catch (err) {
+            console.log('error', JSON.stringify(err, null, 2));
+            if (isClerkAPIResponseError(err)) {
+               if (err.errors[0].code === 'form_identifier_not_found') {
+                  Alert.alert('Error', err.errors[0].message);
+               }
+            }
+         }
+      }
    };
 
    return (
