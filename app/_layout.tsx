@@ -69,6 +69,7 @@ const InitialLayout = () => {
    useEffect(() => {
       if (!isLoaded) return;
 
+      //Auth group
       const inAuthGroup = segments[0] === '(authenticated)';
 
       if (isSignedIn && !inAuthGroup) {
@@ -76,7 +77,8 @@ const InitialLayout = () => {
       } else if (!isSignedIn) {
          router.replace('/');
       }
-   }, [isLoaded, isSignedIn, router, segments]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [isSignedIn]);
 
    if (!loaded || !isLoaded) {
       return (
@@ -142,6 +144,24 @@ const InitialLayout = () => {
             }}
          />
          <Stack.Screen name="(authenticated)/(tabs)" options={{ headerShown: false }} />
+         <Stack.Screen
+            name="(authenticated)/(modals)/lock"
+            options={{ headerShown: false, animation: 'none' }}
+         />
+         <Stack.Screen
+            name="(authenticated)/(modals)/account"
+            options={{
+               presentation: 'transparentModal',
+               animation: 'fade',
+               title: '',
+               headerTransparent: true,
+               headerLeft: () => (
+                  <TouchableOpacity onPress={router.back}>
+                     <Ionicons name="close-outline" size={34} color="#fff" />
+                  </TouchableOpacity>
+               ),
+            }}
+         />
       </Stack>
    );
 };
