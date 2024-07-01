@@ -4,9 +4,9 @@ import { defaultStyles } from '@/constants/Styles';
 
 export const Page = () => (
    <View
-      style={{ flex: 1, justifyContent: 'center', alignContent: 'center', backgroundColor: 'red' }}
+      style={{ flex: 1, justifyContent: 'center', alignContent: 'center', backgroundColor: 'gray' }}
    >
-      <Text style={defaultStyles.header}>Welcome !!!</Text>
+      <Text style={defaultStyles.header}>Welcome Transfer!!!</Text>
    </View>
 );
 
