@@ -3,6 +3,7 @@ import { StyleSheet, Text, ScrollView, View } from 'react-native';
 
 import { Dropdown } from '@/app/components/Dropdown';
 import { RoundBtn } from '@/app/components/RoundBtn';
+import { WidgetList } from '@/app/components/SortableList/WidgetList';
 import Colors from '@/constants/Colors';
 import { defaultStyles } from '@/constants/Styles';
 import { useBalanceStore } from '@/store/balanceStore';
@@ -64,6 +65,7 @@ export const Page = () => {
             ))}
          </View>
          <Text style={defaultStyles.sectionHeader}>Widgets</Text>
+         <WidgetList />
       </ScrollView>
    );
 };
@@ -71,6 +73,7 @@ export const Page = () => {
 const styles = StyleSheet.create({
    account: {
       margin: 80,
+      marginTop: 120,
       alignItems: 'center',
    },
    row: {
