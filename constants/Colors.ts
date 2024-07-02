@@ -1,6 +1,6 @@
 export default {
-   primary: '#3D38ED',
-   primaryMuted: '#C9C8FA',
+   primary: '#14552F',
+   primaryMuted: '#1D2e28',
    background: '#F5F5F5',
    white: '#F0F0F0F0',
    dark: '#141518',
